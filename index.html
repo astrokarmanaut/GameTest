@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Triangles</title>
+    <title>Animated Triangles</title>
     <style>
         body, html {
             margin: 0;
@@ -30,8 +30,6 @@
 
         const triangles = [];
         const numTriangles = 300;
-        let isDragging = false;
-        let dragTriangle = null;
 
         for (let i = 0; i < numTriangles; i++) {
             const x = Math.random() * canvas.width;
@@ -65,11 +63,6 @@
         function update() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             triangles.forEach(triangle => {
-                if (isDragging && triangle === dragTriangle) {
-                    triangle.x = event.touches[0].clientX - canvas.getBoundingClientRect().left;
-                    triangle.y = event.touches[0].clientY - canvas.getBoundingClientRect().top;
-                }
-
                 triangle.x += triangle.velocityX;
                 triangle.y += triangle.velocityY;
 
@@ -88,30 +81,6 @@
         }
 
         update();
-
-        canvas.addEventListener('touchstart', (event) => {
-            isDragging = true;
-            const touchX = event.touches[0].clientX - canvas.getBoundingClientRect().left;
-            const touchY = event.touches[0].clientY - canvas.getBoundingClientRect().top;
-            dragTriangle = triangles.find(triangle => {
-                const centerX = triangle.x + triangle.size / 2;
-                const centerY = triangle.y + triangle.size * Math.sqrt(3) / 6;
-                const distance = Math.sqrt((centerX - touchX) ** 2 + (centerY - touchY) ** 2);
-                return distance <= triangle.size / 2;
-            });
-        });
-
-        canvas.addEventListener('touchend', () => {
-            isDragging = false;
-            dragTriangle = null;
-        });
-
-        canvas.addEventListener('touchmove', (event) => {
-            if (isDragging && dragTriangle) {
-                dragTriangle.x = event.touches[0].clientX - canvas.getBoundingClientRect().left;
-                dragTriangle.y = event.touches[0].clientY - canvas.getBoundingClientRect().top;
-            }
-        });
     </script>
 </body>
 </html>
