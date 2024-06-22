@@ -19,7 +19,7 @@ function getRandomColor() {
     return color;
 }
 
-// Create an array to store the bodies (shapes)
+// Create an array to store the bodies (triangles)
 const bodies = [];
 const numBodies = 10;
 
@@ -34,7 +34,11 @@ for (let i = 0; i < numBodies; i++) {
         type: BodyType.DYNAMIC,
         position: Vec2(x, y),
     });
-    body.createFixture(planck.Box(size / 2, size / 2), { density: 1.0 });
+    body.createFixture(planck.Polygon([
+        Vec2(0, -size / 2),
+        Vec2(size / 2, size / 2),
+        Vec2(-size / 2, size / 2)
+    ]), { density: 1.0 });
 
     body.color = color;
     bodies.push(body);
@@ -51,10 +55,21 @@ function animate() {
     // Draw bodies on canvas
     bodies.forEach(body => {
         const position = body.getPosition();
+        const angle = body.getAngle();
+
+        ctx.save();
+        ctx.translate(position.x, position.y);
+        ctx.rotate(angle);
+
         ctx.fillStyle = body.color;
         ctx.beginPath();
-        ctx.arc(position.x, position.y, 10, 0, 2 * Math.PI);
+        ctx.moveTo(0, -10);
+        ctx.lineTo(10, 10);
+        ctx.lineTo(-10, 10);
+        ctx.closePath();
         ctx.fill();
+
+        ctx.restore();
     });
 
     // Request next animation frame
