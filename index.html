@@ -3,39 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Where Are You?</title>
+    <title>Planck.js Triangle Simulation</title>
+    <script src="https://cdn.jsdelivr.net/npm/planck-js@0.0.28/dist/planck.min.js"></script>
+    <script src="script.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            font-size: 16px;
-            cursor: pointer;
-        }
+        canvas { border: 1px solid black; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Where Are You?</h1>
-        <p id="story"></p>
-        <button id="choice1" onclick="makeChoice(1)"></button>
-        <button id="choice2" onclick="makeChoice(2)"></button>
-    </div>
-    <script src="game.js"></script>
+    <canvas id="canvas" width="800" height="600"></canvas>
 </body>
 </html>
