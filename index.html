@@ -3,16 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planck.js Animation</title>
+    <title>Planck.js Triangles Animation</title>
     <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
         canvas {
-            border: 1px solid black;
+            display: block;
         }
     </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
-    <script src="planck.min.js"></script>
-    <script src="animation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/planck-js@0.2.1/dist/planck-with-testbed.js"></script>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Initialize Planck World
+        const world = planck.World();
+
+        // Create an array to store the dynamic bodies (triangles)
+        const triangles = [];
+
+        // Create random triangles with initial positions and velocities
+        for (let i = 0; i < 10; i++) {
+            const posX = Math.random() * canvas.width;
+            const posY = Math.random() * canvas.height;
+            const triangleBody = world.createBody({
+                type: 'dynamic',
+                position: planck.Vec2(posX, posY),
+            });
+            triangleBody.createFixture(planck.Polygon([
+                planck.Vec2(0, 0),
+                planck.Vec2(20, 0),
+                planck.Vec2(10, 20)
+            ]));
+            triangles.push({ body: triangleBody, velocity: planck.Vec2(Math.random() * 10 - 5, Math.random() * 10 - 5) });
+        }
+
+        // Animation Loop
+        function animate() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Update and draw triangles
+            triangles.forEach(triangle => {
+                // Apply a force to simulate movement
+                triangle.body.applyForceToCenter(triangle.velocity, true);
+
+                // Get the position of the triangle
+                const position = triangle.body.getPosition();
+
+                // Draw the triangle
+                ctx.beginPath();
+                ctx.moveTo(position.x + 0, position.y + 0);
+                ctx.lineTo(position.x + 20, position.y + 0);
+                ctx.lineTo(position.x + 10, position.y + 20);
+                ctx.closePath();
+                ctx.fillStyle = 'blue';
+                ctx.fill();
+            });
+
+            // Update Planck world
+            world.step(1 / 60);
+
+            // Request next animation frame
+            requestAnimationFrame(animate);
+        }
+
+        // Start animation
+        animate();
+    </script>
 </body>
 </html>
