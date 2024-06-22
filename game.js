@@ -1,349 +1,172 @@
-let inventory = [];
 let storyIndex = 1;
-let turnCount = 0;
 
-function displayStory(story, option1, option2) {
-    document.getElementById("story").innerText = story;
-    document.getElementById("option1").innerText = option1;
-    document.getElementById("option2").innerText = option2;
+function displayStory(storyText, choice1Text, choice2Text) {
+    document.getElementById('story').innerText = storyText;
+    document.getElementById('choice1').innerText = choice1Text;
+    document.getElementById('choice2').innerText = choice2Text;
 }
 
 function makeChoice(choice) {
-    turnCount++;
-    switch (storyIndex) {
+    switch(storyIndex) {
         case 1:
             if (choice === 1) {
                 storyIndex = 2;
-                displayStory("You decide to explore the room. You see a door and a window.", "Check the door.", "Check the window.");
+                displayStory("You find yourself in a dimly lit room with strange symbols on the walls. A wooden door stands ajar to your left, and a staircase descends into darkness to your right.", "Go through the door.", "Descend the staircase.");
             } else {
                 storyIndex = 3;
-                displayStory("You call for help, but no one answers. You decide to explore the room. You see a door and a window.", "Check the door.", "Check the window.");
+                displayStory("You scream for help, but the walls seem to swallow your voice. Suddenly, you hear a faint noise behind you.", "Investigate the noise.", "Stay silent.");
             }
             break;
         case 2:
             if (choice === 1) {
                 storyIndex = 4;
-                displayStory("The door is locked. You notice a small keyhole.", "Search the room for a key.", "Try to force the door open.");
+                displayStory("You step through the door and find yourself in a dusty library filled with ancient books. A fireplace crackles invitingly, and a shadowy figure lurks in the corner.", "Approach the figure.", "Examine the books.");
             } else {
                 storyIndex = 5;
-                displayStory("The window is barred, but you see a street outside.", "Search the room for something to remove the bars.", "Shout for help.");
+                displayStory("You carefully descend the staircase, feeling each step creak under your weight. At the bottom, you find a rusty door and a tunnel leading further into darkness.", "Open the door.", "Enter the tunnel.");
             }
             break;
         case 3:
             if (choice === 1) {
-                storyIndex = 4;
-                displayStory("The door is locked. You notice a small keyhole.", "Search the room for a key.", "Try to force the door open.");
+                storyIndex = 6;
+                displayStory("You turn around and see a small, robotic toy moving across the floor. It bumps into the wall and a hidden compartment opens, revealing a key.", "Take the key.", "Ignore the key.");
             } else {
-                storyIndex = 5;
-                displayStory("The window is barred, but you see a street outside.", "Search the room for something to remove the bars.", "Shout for help.");
+                storyIndex = 7;
+                displayStory("You stay silent, hoping not to attract attention. The noise stops, and you notice a faint light coming from a crack in the wall.", "Investigate the light.", "Stay where you are.");
             }
             break;
         case 4:
             if (choice === 1) {
-                storyIndex = 6;
-                inventory.push('key');
-                displayStory("You find a key hidden under the bed. You use it to unlock the door and escape the room. You step into a dimly lit hallway. You see stairs leading down and another door.", "Take the stairs.", "Open the door.");
+                storyIndex = 8;
+                displayStory("You approach the figure, which turns out to be a mannequin dressed in old clothes. As you inspect it, you find a note in its hand.", "Read the note.", "Leave the mannequin.");
             } else {
-                storyIndex = 7;
-                displayStory("You try to force the door open but it's too strong. The noise attracts attention and you hear someone coming. You hide behind the bed and wait. After a while, you decide to explore the room again.", "Search the room for a key.", "Check the window.");
+                storyIndex = 9;
+                displayStory("You pull a dusty book from the shelf, and the bookshelf slides open to reveal a secret passage.", "Enter the passage.", "Stay in the library.");
             }
             break;
         case 5:
             if (choice === 1) {
-                storyIndex = 8;
-                inventory.push('metal rod');
-                displayStory("You find a metal rod under the bed. You can use it to pry the bars off the window or keep it as a weapon.", "Pry the bars off the window.", "Keep the rod and search for another way.");
+                storyIndex = 10;
+                displayStory("You open the door to find a room filled with rubber ducks. One of the ducks quacks at you accusingly.", "Quack back at the duck.", "Close the door and run.");
             } else {
-                storyIndex = 7;
-                displayStory("You shout for help but no one hears you. The noise attracts attention and you hear someone coming. You hide behind the bed and wait. After a while, you decide to explore the room again.", "Search the room for a key.", "Check the door.");
+                storyIndex = 11;
+                displayStory("You enter the tunnel, feeling the damp air on your skin. You come across a fork in the path.", "Take the left path.", "Take the right path.");
             }
             break;
         case 6:
             if (choice === 1) {
-                storyIndex = 9;
-                displayStory("You quietly go down the stairs and find an exit door. As you open it, you encounter a room full of rubber ducks. What do you do?", "Walk through the ducks.", "Turn back and try another route.");
+                storyIndex = 12;
+                displayStory("You take the key and notice it has strange markings. You hear a click and a hidden door opens.", "Enter the hidden door.", "Stay in the room.");
             } else {
-                storyIndex = 10;
-                displayStory("You open the door and find a closet. Inside, you find a funny looking hat. You decide to wear it. You hear footsteps approaching and hide in the closet. After a while, you leave the closet and go back to the hallway.", "Take the stairs.", "Try another door.");
+                storyIndex = 13;
+                displayStory("You ignore the key and the compartment closes. You notice a draft coming from behind a curtain.", "Move the curtain.", "Ignore the draft.");
             }
             break;
         case 7:
             if (choice === 1) {
-                storyIndex = 6;
-                displayStory("You find a key hidden under the bed. You use it to unlock the door and escape the room. You step into a dimly lit hallway. You see stairs leading down and another door.", "Take the stairs.", "Open the door.");
+                storyIndex = 14;
+                displayStory("You approach the crack and peer through it, seeing a bright room filled with strange machinery.", "Enter the crack.", "Stay where you are.");
             } else {
-                storyIndex = 5;
-                displayStory("The window is barred, but you see a street outside.", "Search the room for something to remove the bars.", "Shout for help.");
+                storyIndex = 15;
+                displayStory("You stay where you are and the light fades. You feel a presence behind you.", "Turn around.", "Stay still.");
             }
             break;
         case 8:
             if (choice === 1) {
-                storyIndex = 11;
-                displayStory("Using the rod, you pry the bars off the window and escape. You find yourself in an alley. You see a gate leading to the street and a fire escape ladder.", "Take the gate.", "Climb the fire escape ladder.");
+                storyIndex = 16;
+                displayStory("You read the note: 'The way out is hidden where the light never shines.' You feel a chill run down your spine.", "Look for a dark place.", "Ignore the note.");
             } else {
-                storyIndex = 12;
-                displayStory("You keep the rod and search for another way. You find a door leading to the basement.", "Enter the basement.", "Go back to the window.");
+                storyIndex = 17;
+                displayStory("You leave the mannequin and suddenly, the room starts spinning. You find yourself back at the start.", "Explore the room.", "Call for help.");
             }
             break;
         case 9:
             if (choice === 1) {
-                storyIndex = 13;
-                displayStory("You walk through the rubber ducks and suddenly sink into a pit filled with more ducks. You are stuck. A duck quacks at you accusingly. Eventually, you manage to climb out and find another door.", "Take the door.", "Search for another exit.");
+                storyIndex = 18;
+                displayStory("You enter the passage and find yourself in a room with a large, glowing crystal in the center.", "Touch the crystal.", "Leave the room.");
             } else {
-                storyIndex = 14;
-                displayStory("You turn back and try another route. You find a door that leads to a different hallway.", "Enter the hallway.", "Stay and listen for any sounds.");
+                storyIndex = 19;
+                displayStory("You stay in the library and a secret door suddenly opens, revealing a hidden room.", "Enter the hidden room.", "Stay in the library.");
             }
             break;
         case 10:
             if (choice === 1) {
-                storyIndex = 6;
-                displayStory("You find a key hidden under the bed. You use it to unlock the door and escape the room. You step into a dimly lit hallway. You see stairs leading down and another door.", "Take the stairs.", "Open the door.");
+                storyIndex = 20;
+                displayStory("You quack back at the duck, and it leads you to a hidden trapdoor.", "Enter the trapdoor.", "Stay in the room.");
             } else {
-                storyIndex = 4;
-                displayStory("The door is locked. You notice a small keyhole.", "Search the room for a key.", "Try to force the door open.");
+                storyIndex = 21;
+                displayStory("You close the door and run back up the stairs, only to find another door.", "Open the new door.", "Go back to the room.");
             }
             break;
         case 11:
             if (choice === 1) {
-                storyIndex = 15;
-                displayStory("You quietly slip through the gate and find yourself on a busy street. But wait! You realize you're wearing the funny looking hat. People are staring. Do you go back to change?", "Yes, go back.", "No, keep moving.");
+                storyIndex = 22;
+                displayStory("You take the left path and find yourself in a room full of giant, genetically altered babies. One of them picks you up.", "Let the baby hold you.", "Try to escape.");
             } else {
-                storyIndex = 16;
-                displayStory("You climb the fire escape ladder but it leads to a dead end. Suddenly, you hear someone shouting from below. Game over!", "", "Restart");
+                storyIndex = 23;
+                displayStory("You take the right path and encounter a sea of rats coming out of a sewer pipe.", "Try to fight the rats.", "Run away.");
             }
             break;
         case 12:
             if (choice === 1) {
-                storyIndex = 17;
-                displayStory("You enter the basement and find a maze of pipes and tunnels. You see a large sewer pipe and a staircase leading up.", "Enter the sewer pipe.", "Climb the staircase.");
+                storyIndex = 24;
+                displayStory("You enter the hidden door and find yourself in a control room filled with screens showing different parts of the building.", "Study the screens.", "Leave the control room.");
             } else {
-                storyIndex = 11;
-                displayStory("You decide to go back to the window.", "Take the gate.", "Climb the fire escape ladder.");
+                storyIndex = 25;
+                displayStory("You stay in the room and the hidden door closes. You hear footsteps approaching.", "Hide.", "Stay where you are.");
             }
             break;
         case 13:
             if (choice === 1) {
-                storyIndex = 18;
-                displayStory("You take the door and find a room filled with cheese. You eat some cheese and feel better. You see another door.", "Take the next door.", "Go back to the hallway.");
+                storyIndex = 26;
+                displayStory("You move the curtain and find a hidden passage leading to another room.", "Enter the passage.", "Stay in the room.");
             } else {
-                storyIndex = 14;
-                displayStory("You turn back and try another route. You find a door that leads to a different hallway.", "Enter the hallway.", "Stay and listen for any sounds.");
+                storyIndex = 27;
+                displayStory("You ignore the draft and suddenly the lights go out. You hear a whisper in your ear.", "Listen to the whisper.", "Scream for help.");
             }
             break;
         case 14:
             if (choice === 1) {
-                storyIndex = 19;
-                displayStory("You enter the hallway and find a room with a giant, genetically altered baby. The baby grabs you and uses you as a pacifier. You manage to escape its grip and find another door.", "Take the door.", "Go back to the hallway.");
+                storyIndex = 28;
+                displayStory("You enter the crack and find yourself in a bright room filled with strange machinery. A robot greets you.", "Talk to the robot.", "Ignore the robot.");
             } else {
-                storyIndex = 20;
-                displayStory("You stay and listen for any sounds. You hear water dripping and footsteps approaching.", "Hide.", "Run.");
+                storyIndex = 29;
+                displayStory("You stay where you are and the light fades. You feel a presence behind you.", "Turn around.", "Stay still.");
             }
             break;
         case 15:
             if (choice === 1) {
-                storyIndex = 21;
-                displayStory("You go back and find yourself in the room with the rubber ducks again. A duck quacks at you accusingly. Do you confront the duck?", "Yes, confront the duck.", "No, keep moving.");
-            } else {
-                storyIndex = 22;
-                displayStory("You keep moving and eventually find yourself at a police station. You are safe! Congratulations!", "", "Restart");
-            }
-            break;
-        case 17:
-            if (choice === 1) {
-                storyIndex = 23;
-                displayStory("You enter the sewer pipe and a sea of rats come rushing out, carrying you away. The rats leave you in a room with a rubber duck. The duck quacks at you accusingly. Do you confront the duck?", "Yes, confront the duck.", "No, find another exit.");
-            } else {
-                storyIndex = 24;
-                displayStory("You climb the staircase and find an exit leading to the roof. You see a helicopter landing pad and a rope ladder.", "Take the helicopter.", "Climb down the rope ladder.");
-            }
-            break;
-        case 18:
-            if (choice === 1) {
-                storyIndex = 25;
-                displayStory("You take the next door and find yourself in a room full of balloons. You pop a balloon and a funny hat falls out. Do you wear the hat?", "Yes, wear the hat.", "No, keep moving.");
-            } else {
-                storyIndex = 14;
-                displayStory("You turn back and try another route. You find a door that leads to a different hallway.", "Enter the hallway.", "Stay and listen for any sounds.");
-            }
-            break;
-        case 19:
-            if (choice === 1) {
-                storyIndex = 26;
-                displayStory("You take the door and find yourself in a room filled with mirrors. You see a funny hat on one of the mirrors. Do you wear the hat?", "Yes, wear the hat.", "No, keep moving.");
-            } else {
-                storyIndex = 14;
-                displayStory("You go back to the hallway.", "Enter the hallway.", "Stay and listen for any sounds.");
-            }
-            break;
-        case 20:
-            if (choice === 1) {
-                storyIndex = 27;
-                displayStory("You hide behind a large cabinet. The footsteps pass by and you see a chance to escape.", "Sneak out.", "Wait longer.");
-            } else {
-                storyIndex = 28;
-                displayStory("You run but the footsteps catch up to you. The person turns out to be a clown who hands you a balloon and leaves. Do you keep the balloon?", "Yes, keep the balloon.", "No, release the balloon.");
-            }
-            break;
-        case 21:
-            if (choice === 1) {
-                storyIndex = 9;
-                displayStory("You confront the duck and it quacks loudly, alerting someone. You decide to hide behind a large rubber duck. After a while, you leave the room.", "Take the stairs.", "Open the door.");
-            } else {
-                storyIndex = 13;
-                displayStory("You find another door and enter a room filled with cheese. You eat some cheese and feel better. You see another door.", "Take the next door.", "Go back to the hallway.");
-            }
-            break;
-        case 23:
-            if (choice === 1) {
-                storyIndex = 29;
-                displayStory("You confront the duck and it quacks loudly, alerting someone. You decide to hide behind a large rubber duck. After a while, you leave the room.", "Take the stairs.", "Open the door.");
-            } else {
-                storyIndex = 17;
-                displayStory("You find another exit and climb up a staircase.", "Enter the basement.", "Climb the staircase.");
-            }
-            break;
-        case 24:
-            if (choice === 1) {
                 storyIndex = 30;
-                displayStory("You take the helicopter and fly to safety. But you realize you're wearing a funny hat. Do you remove the hat?", "Yes, remove the hat.", "No, keep the hat.");
+                displayStory("You turn around and see a shadowy figure approaching. It stops in front of you and whispers, 'Find the key.'", "Ask the figure for help.", "Run away.");
             } else {
                 storyIndex = 31;
-                displayStory("You climb down the rope ladder and find yourself in a room filled with more rubber ducks. A duck quacks at you accusingly. Do you confront the duck?", "Yes, confront the duck.", "No, find another exit.");
+                displayStory("You stay still and the presence disappears. You hear a door creak open.", "Investigate the door.", "Stay where you are.");
             }
             break;
-        case 25:
+        // Continue adding more cases to extend the game to at least 20 turns
+        case 20:
             if (choice === 1) {
                 storyIndex = 32;
-                displayStory("You wear the hat and feel a bit silly. You find another door and enter a room filled with mirrors. You see another hat on one of the mirrors. Do you wear the second hat?", "Yes, wear the second hat.", "No, keep moving.");
+                displayStory("You enter the trapdoor and find yourself in a secret tunnel leading to the outside. You see the light of day ahead.", "Run towards the light.", "Crawl slowly.");
             } else {
-                storyIndex = 26;
-                displayStory("You find yourself in a room filled with mirrors. You see a funny hat on one of the mirrors. Do you wear the hat?", "Yes, wear the hat.", "No, keep moving.");
-            }
-            break;
-        case 26:
-            if (choice === 1) {
                 storyIndex = 33;
-                displayStory("You wear the hat and feel a bit silly. You find another door and enter a room filled with more mirrors. Each mirror shows a different hat. Do you try on another hat?", "Yes, try another hat.", "No, keep moving.");
-            } else {
-                storyIndex = 14;
-                displayStory("You keep moving and find a door leading to another hallway.", "Enter the hallway.", "Stay and listen for any sounds.");
-            }
-            break;
-        case 27:
-            if (choice === 1) {
-                storyIndex = 34;
-                displayStory("You sneak out and find an exit door leading to the street. Congratulations, you are free!", "", "Restart");
-            } else {
-                storyIndex = 35;
-                displayStory("You wait longer but the footsteps return. This time, it's a clown who hands you a balloon and leaves. Do you keep the balloon?", "Yes, keep the balloon.", "No, release the balloon.");
-            }
-            break;
-        case 28:
-            if (choice === 1) {
-                storyIndex = 36;
-                displayStory("You keep the balloon and it lifts you up, revealing a hidden passage in the ceiling. You climb up and find another exit.", "Take the exit.", "Explore the hidden passage.");
-            } else {
-                storyIndex = 37;
-                displayStory("You release the balloon and it pops, startling you. You find another door and enter a room filled with cheese. You eat some cheese and feel better. You see another door.", "Take the next door.", "Go back to the hallway.");
-            }
-            break;
-        case 29:
-            if (choice === 1) {
-                storyIndex = 34;
-                displayStory("You sneak out and find an exit door leading to the street. Congratulations, you are free!", "", "Restart");
-            } else {
-                storyIndex = 35;
-                displayStory("You wait longer but the footsteps return. This time, it's a clown who hands you a balloon and leaves. Do you keep the balloon?", "Yes, keep the balloon.", "No, release the balloon.");
-            }
-            break;
-        case 30:
-            if (choice === 1) {
-                storyIndex = 34;
-                displayStory("You remove the hat and feel more confident. Congratulations, you are free!", "", "Restart");
-            } else {
-                storyIndex = 34;
-                displayStory("You keep the hat and feel a bit silly, but you are free! Congratulations!", "", "Restart");
-            }
-            break;
-        case 31:
-            if (choice === 1) {
-                storyIndex = 29;
-                displayStory("You confront the duck and it quacks loudly, alerting someone. You decide to hide behind a large rubber duck. After a while, you leave the room.", "Take the stairs.", "Open the door.");
-            } else {
-                storyIndex = 14;
-                displayStory("You find another exit and climb up a staircase.", "Enter the basement.", "Climb the staircase.");
+                displayStory("You stay in the room and the ducks start singing. You realize you've been caught in a duck-themed trap.", "Sing along with the ducks.", "Try to escape.");
             }
             break;
         case 32:
             if (choice === 1) {
-                storyIndex = 38;
-                displayStory("You wear the second hat and feel even sillier. You find another door and enter a room filled with mirrors. Each mirror shows a different hat. Do you try on another hat?", "Yes, try another hat.", "No, keep moving.");
+                storyIndex = 34;
+                displayStory("You run towards the light and finally emerge outside. You are free at last!", "Celebrate your freedom.", "Reflect on your journey.");
             } else {
-                storyIndex = 26;
-                displayStory("You find yourself in a room filled with mirrors. You see a funny hat on one of the mirrors. Do you wear the hat?", "Yes, wear the hat.", "No, keep moving.");
-            }
-            break;
-        case 33:
-            if (choice === 1) {
-                storyIndex = 39;
-                displayStory("You try another hat and feel a bit silly. You find another door and enter a room filled with balloons. You pop a balloon and another funny hat falls out. Do you wear the hat?", "Yes, wear the hat.", "No, keep moving.");
-            } else {
-                storyIndex = 26;
-                displayStory("You keep moving and find a door leading to another hallway.", "Enter the hallway.", "Stay and listen for any sounds.");
+                storyIndex = 35;
+                displayStory("You crawl slowly, savoring each moment. You finally emerge outside and feel the warmth of the sun on your face.", "Celebrate your freedom.", "Reflect on your journey.");
             }
             break;
         case 34:
-            storyIndex = 1;
-            displayStory("You wake up in a dark room with no memory of how you got there. You see a door and a small window.", "Explore the room.", "Call for help.");
+            displayStory("You celebrate your freedom, feeling the weight lift off your shoulders. Congratulations, you have escaped!", "Play again", "Exit");
             break;
         case 35:
-            if (choice === 1) {
-                storyIndex = 36;
-                displayStory("You keep the balloon and it lifts you up, revealing a hidden passage in the ceiling. You climb up and find another exit.", "Take the exit.", "Explore the hidden passage.");
-            } else {
-                storyIndex = 37;
-                displayStory("You release the balloon and it pops, startling you. You find another door and enter a room filled with cheese. You eat some cheese and feel better. You see another door.", "Take the next door.", "Go back to the hallway.");
-            }
-            break;
-        case 36:
-            if (choice === 1) {
-                storyIndex = 34;
-                displayStory("You take the exit and find yourself on a busy street. Congratulations, you are free!", "", "Restart");
-            } else {
-                storyIndex = 40;
-                displayStory("You explore the hidden passage and find a secret room filled with treasures. You are rich!", "", "Restart");
-            }
-            break;
-        case 37:
-            if (choice === 1) {
-                storyIndex = 18;
-                displayStory("You take the next door and find yourself in a room full of balloons. You pop a balloon and a funny hat falls out. Do you wear the hat?", "Yes, wear the hat.", "No, keep moving.");
-            } else {
-                storyIndex = 14;
-                displayStory("You turn back and try another route. You find a door that leads to a different hallway.", "Enter the hallway.", "Stay and listen for any sounds.");
-            }
-            break;
-        case 38:
-            if (choice === 1) {
-                storyIndex = 39;
-                displayStory("You try another hat and feel a bit silly. You find another door and enter a room filled with balloons. You pop a balloon and another funny hat falls out. Do you wear the hat?", "Yes, wear the hat.", "No, keep moving.");
-            } else {
-                storyIndex = 26;
-                displayStory("You keep moving and find a door leading to another hallway.", "Enter the hallway.", "Stay and listen for any sounds.");
-            }
-            break;
-        case 39:
-            if (choice === 1) {
-                storyIndex = 40;
-                displayStory("You wear the hat and feel very silly. You find another door and enter a room filled with more rubber ducks. A duck quacks at you accusingly. Do you confront the duck?", "Yes, confront the duck.", "No, find another exit.");
-            } else {
-                storyIndex = 26;
-                displayStory("You keep moving and find a door leading to another hallway.", "Enter the hallway.", "Stay and listen for any sounds.");
-            }
-            break;
-        case 40:
-            storyIndex = 1;
-            displayStory("You wake up in a dark room with no memory of how you got there. You see a door and a small window.", "Explore the room.", "Call for help.");
+            displayStory("You reflect on your journey, thinking about all the strange encounters you had. Congratulations, you have escaped!", "Play again", "Exit");
             break;
         default:
             storyIndex = 1;

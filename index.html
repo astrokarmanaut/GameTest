@@ -2,25 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Where Are You? - Escape Adventure Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where Are You?</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 20px;
         }
-        #story {
-            margin-bottom: 20px;
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         button {
-            margin: 5px;
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h1>Where Are You? - Escape Adventure Game</h1>
-    <div id="story"></div>
-    <button id="option1" onclick="makeChoice(1)"></button>
-    <button id="option2" onclick="makeChoice(2)"></button>
+    <div class="container">
+        <h1>Where Are You?</h1>
+        <p id="story"></p>
+        <button id="choice1" onclick="makeChoice(1)"></button>
+        <button id="choice2" onclick="makeChoice(2)"></button>
+    </div>
     <script src="game.js"></script>
 </body>
 </html>
