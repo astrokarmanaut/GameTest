@@ -3,15 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planck.js Triangles Animation</title>
-    <style>
-        body, html {
-            margin: 0;<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moving Triangles</title>
+    <title>Interactive Triangles</title>
     <style>
         body, html {
             margin: 0;
@@ -19,6 +11,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
+            background-color: #f0f0f0;
         }
 
         canvas {
@@ -36,150 +29,89 @@
         canvas.height = window.innerHeight;
 
         const triangles = [];
+        const numTriangles = 300;
+        let isDragging = false;
+        let dragTriangle = null;
 
-        class Triangle {
-            constructor(x, y, size, velocityX, velocityY, color) {
-                this.x = x;
-                this.y = y;
-                this.size = size;
-                this.velocityX = velocityX;
-                this.velocityY = velocityY;
-                this.color = color;
-            }
-
-            update() {
-                this.x += this.velocityX;
-                this.y += this.velocityY;
-
-                if (this.x + this.size / 2 > canvas.width || this.x - this.size / 2 < 0) {
-                    this.velocityX = -this.velocityX;
-                }
-
-                if (this.y + this.size / 2 > canvas.height || this.y - this.size / 2 < 0) {
-                    this.velocityY = -this.velocityY;
-                }
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.moveTo(this.x - this.size / 2, this.y - this.size / 2);
-                ctx.lineTo(this.x + this.size / 2, this.y - this.size / 2);
-                ctx.lineTo(this.x, this.y + this.size / 2);
-                ctx.closePath();
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
+        for (let i = 0; i < numTriangles; i++) {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            const size = Math.random() * 10 + 5;
+            const velocityX = (Math.random() - 0.5) * 2; // Random horizontal velocity
+            const velocityY = (Math.random() - 0.5) * 2; // Random vertical velocity
+            const color = getRandomColor();
+            triangles.push({ x, y, size, velocityX, velocityY, color });
         }
 
-        function createTriangles() {
-            for (let i = 0; i < 50; i++) {
-                const posX = Math.random() * canvas.width;
-                const posY = Math.random() * canvas.height;
-                const size = Math.random() * 20 + 10;
-                const velocityX = Math.random() * 4 - 2;
-                const velocityY = Math.random() * 4 - 2;
-                const color = randomColor();
-                triangles.push(new Triangle(posX, posY, size, velocityX, velocityY, color));
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
             }
+            return color;
         }
 
-        function animate() {
+        function drawTriangle(triangle) {
+            ctx.beginPath();
+            ctx.moveTo(triangle.x, triangle.y);
+            ctx.lineTo(triangle.x + triangle.size, triangle.y);
+            ctx.lineTo(triangle.x + triangle.size / 2, triangle.y + triangle.size * Math.sqrt(3) / 2);
+            ctx.closePath();
+            ctx.fillStyle = triangle.color;
+            ctx.fill();
+        }
+
+        function update() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             triangles.forEach(triangle => {
-                triangle.update();
-                triangle.draw();
-            });
-            requestAnimationFrame(animate);
-        }
+                if (isDragging && triangle === dragTriangle) {
+                    triangle.x = event.touches[0].clientX - canvas.getBoundingClientRect().left;
+                    triangle.y = event.touches[0].clientY - canvas.getBoundingClientRect().top;
+                }
 
-        function randomColor() {
-            const r = Math.floor(Math.random() * 256);
-            const g = Math.floor(Math.random() * 256);
-            const b = Math.floor(Math.random() * 256);
-            return `rgb(${r}, ${g}, ${b})`;
-        }
+                triangle.x += triangle.velocityX;
+                triangle.y += triangle.velocityY;
 
-        createTriangles();
-        animate();
-    </script>
-</body>
-</html>
+                if (triangle.x + triangle.size > canvas.width || triangle.x < 0) {
+                    triangle.velocityX = -triangle.velocityX;
+                }
 
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
+                if (triangle.y + triangle.size * Math.sqrt(3) / 2 > canvas.height || triangle.y < 0) {
+                    triangle.velocityY = -triangle.velocityY;
+                }
 
-        canvas {
-            display: block;
-        }
-    </style>
-</head>
-<body>
-    <canvas id="canvas"></canvas>
-    <script src="https://cdn.jsdelivr.net/npm/planck-js@0.2.1/dist/planck-with-testbed.js"></script>
-    <script>
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        // Initialize Planck World
-        const world = planck.World();
-
-        // Create an array to store the dynamic bodies (triangles)
-        const triangles = [];
-
-        // Create random triangles with initial positions and velocities
-        for (let i = 0; i < 10; i++) {
-            const posX = Math.random() * canvas.width;
-            const posY = Math.random() * canvas.height;
-            const triangleBody = world.createBody({
-                type: 'dynamic',
-                position: planck.Vec2(posX, posY),
-            });
-            triangleBody.createFixture(planck.Polygon([
-                planck.Vec2(0, 0),
-                planck.Vec2(20, 0),
-                planck.Vec2(10, 20)
-            ]));
-            triangles.push({ body: triangleBody, velocity: planck.Vec2(Math.random() * 10 - 5, Math.random() * 10 - 5) });
-        }
-
-        // Animation Loop
-        function animate() {
-            // Clear canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Update and draw triangles
-            triangles.forEach(triangle => {
-                // Apply a force to simulate movement
-                triangle.body.applyForceToCenter(triangle.velocity, true);
-
-                // Get the position of the triangle
-                const position = triangle.body.getPosition();
-
-                // Draw the triangle
-                ctx.beginPath();
-                ctx.moveTo(position.x + 0, position.y + 0);
-                ctx.lineTo(position.x + 20, position.y + 0);
-                ctx.lineTo(position.x + 10, position.y + 20);
-                ctx.closePath();
-                ctx.fillStyle = 'blue';
-                ctx.fill();
+                drawTriangle(triangle);
             });
 
-            // Update Planck world
-            world.step(1 / 60);
-
-            // Request next animation frame
-            requestAnimationFrame(animate);
+            requestAnimationFrame(update);
         }
 
-        // Start animation
-        animate();
+        update();
+
+        canvas.addEventListener('touchstart', (event) => {
+            isDragging = true;
+            const touchX = event.touches[0].clientX - canvas.getBoundingClientRect().left;
+            const touchY = event.touches[0].clientY - canvas.getBoundingClientRect().top;
+            dragTriangle = triangles.find(triangle => {
+                const centerX = triangle.x + triangle.size / 2;
+                const centerY = triangle.y + triangle.size * Math.sqrt(3) / 6;
+                const distance = Math.sqrt((centerX - touchX) ** 2 + (centerY - touchY) ** 2);
+                return distance <= triangle.size / 2;
+            });
+        });
+
+        canvas.addEventListener('touchend', () => {
+            isDragging = false;
+            dragTriangle = null;
+        });
+
+        canvas.addEventListener('touchmove', (event) => {
+            if (isDragging && dragTriangle) {
+                dragTriangle.x = event.touches[0].clientX - canvas.getBoundingClientRect().left;
+                dragTriangle.y = event.touches[0].clientY - canvas.getBoundingClientRect().top;
+            }
+        });
     </script>
 </body>
 </html>
