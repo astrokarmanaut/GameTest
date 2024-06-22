@@ -209,7 +209,7 @@ function makeChoice(choice) {
         case 23:
             if (choice === 1) {
                 storyIndex = 46;
-                displayStory("You try to fight the rats, but there are too many. They overwhelm you and you pass out.", "Wake up in a new, unfamiliar room.", "Try to remember what happened.");
+                displayStory("You try to fight the rats, but there are too many. They overwhelm you and you pass out. You wake up and realize that the rats were a hallucination.", "Wake up in a new, unfamiliar room.", "Try to remember what happened.");
             } else {
                 storyIndex = 47;
                 displayStory("You run away from the rats and find a ladder leading up.", "Climb the ladder quickly.", "Stay at the bottom and catch your breath.");
@@ -243,25 +243,74 @@ function makeChoice(choice) {
                 displayStory("You crawl slowly, savoring each moment. You finally emerge outside and feel the warmth of the sun on your face.", "Celebrate your freedom with a happy dance.", "Reflect on your journey with a deep sigh.");
             }
             break;
-        case 52:
-            displayStory("You celebrate your freedom, feeling the weight lift off your shoulders. Congratulations, you have escaped!", "Play again", "Exit");
+        case 41:
+            if (choice === 1) {
+                storyIndex = 54;
+                displayStory("You sing along with the ducks, and they reveal a hidden exit.", "Take the hidden exit revealed by the ducks.", "Stay and sing with the ducks for a while longer.");
+            } else {
+                storyIndex = 55;
+                displayStory("You try to escape, but the ducks quack louder. Suddenly, a trapdoor opens beneath you and you fall, ending your journey.", "Restart the game.", "Exit");
+            }
             break;
-        case 53:
-            displayStory("You reflect on your journey, thinking about all the strange encounters you had. Congratulations, you have escaped!", "Play again", "Exit");
+        case 42:
+            if (choice === 1) {
+                storyIndex = 56;
+                displayStory("You examine the clocks and find one that seems to be ticking backwards. It opens a hidden door.", "Enter the hidden door revealed by the backwards clock.", "Leave the clock room and go back to the staircase.");
+            } else {
+                storyIndex = 57;
+                displayStory("You leave the clock room and find another staircase leading up.", "Climb the new staircase.", "Stay on the current floor and explore more rooms.");
+            }
             break;
-        default:
-            displayStory("Something went wrong. Try again.", "Play again", "Exit");
+        case 43:
+            if (choice === 1) {
+                storyIndex = 58;
+                displayStory("You examine the mirrors and one of them shows a different reflection. It reveals a hidden door.", "Enter the hidden door revealed by the strange mirror.", "Leave the mirror room and go back to the staircase.");
+            } else {
+                storyIndex = 59;
+                displayStory("You leave the mirror room and find another staircase leading down.", "Descend the new staircase.", "Stay on the current floor and explore more rooms.");
+            }
             break;
+        case 44:
+            if (choice === 1) {
+                storyIndex = 60;
+                displayStory("You rest on the mat and regain your strength. The giant baby falls asleep.", "Get up quietly and look for a way out.", "Stay on the mat and rest longer.");
+            } else {
+                storyIndex = 61;
+                displayStory("You get up and find a door hidden behind some toys.", "Open the hidden door and see what's inside.", "Ignore the hidden door and keep looking.");
+            }
+            break;
+        case 45:
+            if (choice === 1) {
+                storyIndex = 62;
+                displayStory("You run as fast as you can and find a ladder leading up.", "Climb the ladder quickly.", "Stay at the bottom and catch your breath.");
+            } else {
+                storyIndex = 63;
+                displayStory("You hide and catch your breath, hearing the giant baby searching for you.", "Stay hidden until the baby gives up.", "Try to sneak away quietly.");
+            }
+            break;
+        case 46:
+            if (choice === 1) {
+                storyIndex = 64;
+                displayStory("You wake up in a new, unfamiliar room. It's filled with strange symbols and artifacts.", "Examine the symbols closely.", "Look for a way out of the room.");
+            } else {
+                storyIndex = 65;
+                displayStory("You try to remember what happened and realize you were under a spell. You need to find a way to break it.", "Look for clues to break the spell.", "Accept your fate and rest.");
+            }
+            break;
+        case 47:
+            if (choice === 1) {
+                storyIndex = 66;
+                displayStory("You climb the ladder quickly and find yourself in a garden. The fresh air is a welcome relief.", "Explore the garden and enjoy the fresh air.", "Look for a way out of the garden.");
+            } else {
+                storyIndex = 67;
+                displayStory("You stay at the bottom and catch your breath. You hear the rats getting closer.", "Climb the ladder quickly.", "Stay and try to fight off the rats.");
+            }
+            break;
+        // More cases can be added to extend the story further
     }
 }
 
-document.getElementById('choice1').addEventListener('click', function() {
-    makeChoice(1);
-});
+document.getElementById('choice1').addEventListener('click', () => makeChoice(1));
+document.getElementById('choice2').addEventListener('click', () => makeChoice(2));
 
-document.getElementById('choice2').addEventListener('click', function() {
-    makeChoice(2);
-});
-
-// Initial story display
-displayStory("You wake up in a mysterious room with no memory of how you got there. You see a door slightly open and hear faint noises behind you.", "Approach the door cautiously and peek through the crack.", "Scream for help, hoping someone hears you.");
+displayStory("You wake up in a dark room with no memory of how you got there. A faint light flickers above you.", "Look around the room for clues.", "Scream for help.");
