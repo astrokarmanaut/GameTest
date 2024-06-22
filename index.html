@@ -6,7 +6,105 @@
     <title>Planck.js Triangles Animation</title>
     <style>
         body, html {
+            margin: 0;<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Triangles</title>
+    <style>
+        body, html {
             margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const triangles = [];
+
+        class Triangle {
+            constructor(x, y, size, velocityX, velocityY, color) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.velocityX = velocityX;
+                this.velocityY = velocityY;
+                this.color = color;
+            }
+
+            update() {
+                this.x += this.velocityX;
+                this.y += this.velocityY;
+
+                if (this.x + this.size / 2 > canvas.width || this.x - this.size / 2 < 0) {
+                    this.velocityX = -this.velocityX;
+                }
+
+                if (this.y + this.size / 2 > canvas.height || this.y - this.size / 2 < 0) {
+                    this.velocityY = -this.velocityY;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.moveTo(this.x - this.size / 2, this.y - this.size / 2);
+                ctx.lineTo(this.x + this.size / 2, this.y - this.size / 2);
+                ctx.lineTo(this.x, this.y + this.size / 2);
+                ctx.closePath();
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function createTriangles() {
+            for (let i = 0; i < 50; i++) {
+                const posX = Math.random() * canvas.width;
+                const posY = Math.random() * canvas.height;
+                const size = Math.random() * 20 + 10;
+                const velocityX = Math.random() * 4 - 2;
+                const velocityY = Math.random() * 4 - 2;
+                const color = randomColor();
+                triangles.push(new Triangle(posX, posY, size, velocityX, velocityY, color));
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            triangles.forEach(triangle => {
+                triangle.update();
+                triangle.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        function randomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        createTriangles();
+        animate();
+    </script>
+</body>
+</html>
+
             padding: 0;
             width: 100%;
             height: 100%;
