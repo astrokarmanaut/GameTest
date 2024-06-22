@@ -137,4 +137,175 @@ function makeChoice(choice) {
         case 15:
             if (choice === 1) {
                 storyIndex = 30;
-                displayStory("You turn
+                displayStory("You turn around and see a shadowy figure approaching. It stops in front of you and whispers, 'Find the key.'", "Ask the shadowy figure for help finding the key.", "Run away from the creepy shadowy figure.");
+            } else {
+                storyIndex = 31;
+                displayStory("You stay still and the presence disappears. You hear a door creak open.", "Investigate the mysterious door that just opened.", "Stay where you are and wait for something else to happen.");
+            }
+            break;
+        case 16:
+            if (choice === 1) {
+                storyIndex = 32;
+                displayStory("You search for a place where light never reaches and find a hidden trapdoor.", "Enter the hidden trapdoor and see where it leads.", "Look around for any other dark places.");
+            } else {
+                storyIndex = 33;
+                displayStory("You ignore the note and suddenly, the room starts spinning. You find yourself back at the start.", "Explore the mysterious room again.", "Call for help and hope someone hears you.");
+            }
+            break;
+        case 17:
+            if (choice === 1) {
+                storyIndex = 34;
+                displayStory("You explore the room full of confusing, reflective mirrors and find a hidden passage behind one of them.", "Enter the hidden passage behind the mirror.", "Stay in the mirror room and look for other clues.");
+            } else {
+                storyIndex = 35;
+                displayStory("You close your eyes and wait for the dizziness to pass. When you open them, you find yourself in a different room.", "Explore the new room you find yourself in.", "Stay still and try to understand what just happened.");
+            }
+            break;
+        case 18:
+            if (choice === 1) {
+                storyIndex = 36;
+                displayStory("You touch the mesmerizing, glowing crystal and feel a strange energy coursing through you.", "Embrace the strange energy and see where it takes you.", "Pull your hand away and leave the room quickly.");
+            } else {
+                storyIndex = 37;
+                displayStory("You leave the room quickly and find yourself in a dark hallway.", "Walk down the dark hallway and see where it leads.", "Stay in the hallway and look for clues.");
+            }
+            break;
+        case 19:
+            if (choice === 1) {
+                storyIndex = 38;
+                displayStory("You enter the newly revealed hidden room and find a treasure chest.", "Open the treasure chest and see what's inside.", "Leave the hidden room and continue exploring.");
+            } else {
+                storyIndex = 39;
+                displayStory("You stay in the library and continue exploring the dusty, ancient books.", "Read one of the dusty, ancient books.", "Look for other hidden passages in the library.");
+            }
+            break;
+        case 20:
+            if (choice === 1) {
+                storyIndex = 40;
+                displayStory("You enter the hidden trapdoor and find yourself in a secret tunnel leading to the outside. You see the light of day ahead.", "Run towards the light and freedom.", "Crawl slowly and cautiously towards the light.");
+            } else {
+                storyIndex = 41;
+                displayStory("You stay in the room of rubber ducks, feeling silly. Suddenly, the ducks start singing.", "Sing along with the quirky rubber ducks.", "Try to escape the room of singing rubber ducks.");
+            }
+            break;
+        case 21:
+            if (choice === 1) {
+                storyIndex = 42;
+                displayStory("You open the mysterious new door at the top of the stairs and find a room filled with magical artifacts.", "Examine the magical artifacts closely.", "Close the door and look for another way.");
+            } else {
+                storyIndex = 43;
+                displayStory("You go back to the room of rubber ducks and reconsider your options.", "Quack back at the ducks again.", "Sit quietly and think about your next move.");
+            }
+            break;
+        case 22:
+            if (choice === 1) {
+                storyIndex = 44;
+                displayStory("You let the giant baby hold you and it starts singing a lullaby.", "Listen to the lullaby and see what happens.", "Try to escape the giant baby's grasp.");
+            } else {
+                storyIndex = 45;
+                displayStory("You try to escape the grasp of the giant baby, but it holds on tight.", "Keep struggling to escape.", "Stay still and see if it lets you go.");
+            }
+            break;
+        case 23:
+            if (choice === 1) {
+                storyIndex = 46;
+                displayStory("You attempt to fight off the swarm of rats, but there are too many.", "Keep fighting the rats.", "Run away as fast as you can.");
+            } else {
+                storyIndex = 47;
+                displayStory("You run away from the terrifying sea of rats and find a hidden door.", "Open the hidden door and see where it leads.", "Keep running and look for another way out.");
+            }
+            break;
+        case 24:
+            if (choice === 1) {
+                storyIndex = 48;
+                displayStory("You study the surveillance screens carefully and notice a pattern.", "Follow the pattern to find a way out.", "Ignore the pattern and continue exploring.");
+            } else {
+                storyIndex = 49;
+                displayStory("You leave the control room and find yourself in a maze of hallways.", "Navigate the maze of hallways.", "Stay in the hallway and look for clues.");
+            }
+            break;
+        case 25:
+            if (choice === 1) {
+                storyIndex = 50;
+                displayStory("You hide quickly and the footsteps pass by. You find a hidden passage.", "Enter the hidden passage and see where it leads.", "Stay hidden and wait for the footsteps to fade.");
+            } else {
+                storyIndex = 51;
+                displayStory("You stay where you are and the footsteps get closer.", "Prepare to confront whoever is coming.", "Hide quickly before you are discovered.");
+            }
+            break;
+        case 26:
+            if (choice === 1) {
+                storyIndex = 52;
+                displayStory("You enter the hidden passage behind the curtain and find a hidden room.", "Explore the hidden room and look for clues.", "Stay in the passage and listen for any sounds.");
+            } else {
+                storyIndex = 53;
+                displayStory("You stay in the room and look for other clues. Suddenly, the room starts spinning.", "Close your eyes and wait for the dizziness to pass.", "Try to keep your balance and look for a way out.");
+            }
+            break;
+        case 27:
+            if (choice === 1) {
+                storyIndex = 54;
+                displayStory("You listen closely to the eerie whisper and it guides you to a hidden door.", "Open the hidden door and see where it leads.", "Ignore the whisper and look for another way out.");
+            } else {
+                storyIndex = 55;
+                displayStory("You scream for help, hoping someone hears you. The whisper gets louder.", "Listen to the louder whisper.", "Keep screaming for help.");
+            }
+            break;
+        case 28:
+            if (choice === 1) {
+                storyIndex = 56;
+                displayStory("You talk to the friendly robot and it gives you a clue about how to escape.", "Follow the robot's clue.", "Ignore the clue and explore the room.");
+            } else {
+                storyIndex = 57;
+                displayStory("You ignore the robot and explore the room, finding a hidden passage.", "Enter the hidden passage and see where it leads.", "Stay in the room and continue exploring.");
+            }
+            break;
+        case 30:
+            if (choice === 1) {
+                storyIndex = 58;
+                displayStory("You ask the shadowy figure for help finding the key, and it gives you a mysterious riddle.", "Solve the mysterious riddle.", "Ignore the riddle and look for the key yourself.");
+            } else {
+                storyIndex = 59;
+                displayStory("You run away from the creepy shadowy figure and find a hidden door.", "Open the hidden door and see where it leads.", "Keep running and look for another way out.");
+            }
+            break;
+        case 32:
+            if (choice === 1) {
+                storyIndex = 60;
+                displayStory("You enter the hidden trapdoor and find yourself in a secret tunnel leading to the outside. You see the light of day ahead.", "Run towards the light and freedom.", "Crawl slowly and cautiously towards the light.");
+            } else {
+                storyIndex = 61;
+                displayStory("You look around for any other dark places and find another hidden passage.", "Enter the hidden passage and see where it leads.", "Stay in the room and look for other clues.");
+            }
+            break;
+        case 60:
+            if (choice === 1) {
+                storyIndex = 62;
+                displayStory("You run towards the light and finally emerge outside. You are free at last!", "Celebrate your freedom!", "Reflect on your bizarre journey.");
+            } else {
+                storyIndex = 63;
+                displayStory("You crawl slowly, savoring each moment. You finally emerge outside and feel the warmth of the sun on your face.", "Celebrate your freedom!", "Reflect on your bizarre journey.");
+            }
+            break;
+        case 62:
+            displayStory("You celebrate your freedom, feeling the weight lift off your shoulders. Congratulations, you have escaped!", "Play again", "Exit");
+            break;
+        case 63:
+            displayStory("You reflect on your journey, thinking about all the strange encounters you had. Congratulations, you have escaped!", "Play again", "Exit");
+            break;
+        default:
+            displayStory("Something went wrong. Try again.", "Play again", "Exit");
+            break;
+    }
+}
+
+document.getElementById('choice1').addEventListener('click', function() {
+    makeChoice(1);
+});
+
+document.getElementById('choice2').addEventListener('click', function() {
+    makeChoice(2);
+});
+
+// Initial story display
+displayStory("You wake up in a mysterious room with no memory of how you got there. You see a door slightly open and hear faint noises behind you.", "Approach the door cautiously.", "Scream for help, hoping someone hears you.");
